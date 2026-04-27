@@ -1,0 +1,71 @@
+Query Type|Query Text|Top Sources Retrieved|Similarity Scores|Source Mix|Generated Answer (First 2 Sentences)|Grounded (Yes/No)
+Targeted|How do I extract and scrape text from an HTML web page using BeautifulSoup?|"[1] local/my_custom_tools/data/my_custom_tools.py::scrape_html_text
+[2] elifesciences/elife-tools/elifetools/utils.py::extract_nodes
+[3] elifesciences/elife-tools/elifetools/utils.py::node_contents_str
+[4] elifesciences/elife-tools/elifetools/parseJATS.py::category"|"0.3506
+1.0749
+1.0780
+1.1140"|Both|"You can extract and scrape text from an HTML web page using the `scrape_html_text` function from the `local/my_custom_tools` repository. Here’s how you can use it:  ```python from local.my_custom_tools.data.my_custom_tools import scrape_html_text  html_content = ""<html><body><p>Hello, World!</p></body></html>"" clean_text = scrape_html_text(html_content) print(clean_text)  # Output: Hello, World! ```  This function strips all tags and returns clean text."|TBD
+Targeted|How do I generate an automated unit test for a python function using the OpenAI API?|"[1] local/my_custom_tools/data/my_custom_tools.py::generate_automated_unit_test
+[2] kaste/mockito-python/mockito/mocking.py::mock
+[3] MatterMiners/cobald/cobald/daemon/runners/service.py::ServiceRunner.execute
+[4] kaste/mockito-python/mockito/mockito.py::verifyNoUnwantedInteractions"|"0.6134
+1.1065
+1.1363
+1.1580"|Both|You can generate an automated unit test for a Python function using the OpenAI API by utilizing the `generate_automated_unit_test` function. Here’s how you can do it:  1.|TBD
+Targeted|How to read and parse a JSON configuration file using the json module?|"[1] local/my_custom_tools/data/my_custom_tools.py::parse_json_config
+[2] 9b/google-alerts/google_alerts/__init__.py::GoogleAlerts._config_bootstrap
+[3] ramses-tech/ramses/ramses/utils.py::convert_schema
+[4] canonical-ols/acceptable/acceptable/__main__.py::load_metadata"|"0.4553
+1.1108
+1.2018
+1.2192"|Both|"You can read and parse a JSON configuration file using the `parse_json_config` function from the `local/my_custom_tools` repository. Here’s how it works:  ```python def parse_json_config(file_path):     """"""     Read and parse a JSON configuration file."|TBD
+Targeted|How to write a list of dictionary data out to a CSV file automatically extracting headers?|"[1] local/my_custom_tools/data/my_custom_tools.py::write_dict_to_csv
+[2] quizl/quizler/quizler/models.py::WordSet.to_dict
+[3] astroduff/commah/commah/commah.py::_getcosmoheader
+[4] xenadevel/PyXenaManager/xenamanager/xena_port.py::XenaPort.read_stream_stats"|"0.3263
+1.1012
+1.1106
+1.1146"|Both|You can use the `write_dict_to_csv` function from the `local/my_custom_tools` repository to write a list of dictionary data to a CSV file while automatically extracting headers from the first dictionary's keys. Here’s how you can do it:  ```python from local.my_custom_tools.data.my_custom_tools import write_dict_to_csv  data_list = [     {'name': 'Alice', 'age': 30},     {'name': 'Bob', 'age': 25} ]  output_file = 'output.csv' write_dict_to_csv(data_list, output_file) ```  This will create a CSV file named `output.csv` with the headers `name` and `age`.|TBD
+Targeted|How do I execute a shell command as a subprocess with a strict timeout limit?|"[1] local/my_custom_tools/data/my_custom_tools.py::execute_shell_with_timeout
+[2] noirbizarre/django.js/djangojs/runners.py::PhantomJsRunner.execute
+[3] MatterMiners/cobald/cobald/daemon/runners/asyncio_watcher.py::awaitable_runner
+[4] MatterMiners/cobald/cobald/daemon/runners/base_runner.py::BaseRunner.run"|"0.4576
+0.9887
+1.1305
+1.1422"|Both|"You can execute a shell command as a subprocess with a strict timeout limit using the `execute_shell_with_timeout` function. Here is how you can use it:  ```python output = execute_shell_with_timeout(""your_command_here"", timeout_seconds=30) ```  This function will return the standard output as a string."|TBD
+Cross-Corpus|What is the best way to extract data from a website and save it to a file?|"[1] local/my_custom_tools/data/my_custom_tools.py::scrape_html_text
+[2] elifesciences/elife-tools/elifetools/parseJATS.py::version_history
+[3] eugene-eeo/mailthon/mailthon/api.py::email
+[4] local/my_custom_tools/data/my_custom_tools.py::write_dict_to_csv"|"1.0698
+1.3829
+1.3992
+1.4036"|Both|The best way to extract data from a website and save it to a file involves the following steps:  1. **Scrape the HTML content** from the website using the `scrape_html_text` function to get clean text data.|TBD
+Cross-Corpus|How can I test my python code automatically?|"[1] local/my_custom_tools/data/my_custom_tools.py::generate_automated_unit_test
+[2] jamescooke/flake8-aaa/src/flake8_aaa/command_line.py::do_command_line
+[3] Karaage-Cluster/python-tldap/tldap/database/__init__.py::insert
+[4] aroberge/experimental/experimental/core/import_hook.py::MyLoader.exec_module"|"0.8834
+1.0352
+1.0582
+1.0776"|Both|You can generate automated unit tests for your Python functions using the `generate_automated_unit_test` function from the `my_custom_tools` repository. This function utilizes the OpenAI API to create pytest-compatible test cases based on your function code.|TBD
+Cross-Corpus|I need to read settings from a file and execute a command, how do I do that?|"[1] local/my_custom_tools/data/my_custom_tools.py::parse_json_config
+[2] xenadevel/PyXenaManager/xenamanager/xena_port.py::XenaPort.save_config
+[3] xenadevel/PyXenaManager/xenamanager/xena_port.py::XenaPort.load_config
+[4] noirbizarre/django.js/djangojs/management/commands/js.py::Command.create_parser"|"0.9775
+1.0229
+1.1198
+1.2504"|Both|You can read settings from a file using the `parse_json_config` function and then execute a command using the `load_config` method. Here's how you can do it:  1.|TBD
+Cross-Corpus|How do I process lists of dictionaries in python?|"[1] local/my_custom_tools/data/my_custom_tools.py::write_dict_to_csv
+[2] quizl/quizler/quizler/models.py::WordSet.to_dict
+[3] quizl/quizler/quizler/models.py::WordSet.from_dict
+[4] aroberge/experimental/experimental/core/transforms.py::add_transformers"|"0.6862
+0.8641
+0.8957
+0.9078"|Both|To process lists of dictionaries in Python, you can use the `write_dict_to_csv` function to write the data to a CSV file. This function automatically extracts headers from the first dictionary's keys.|TBD
+Cross-Corpus|What are some ways to interact with the operating system and files?|"[1] alixedi/palal/palal/survey.py::survey_loader
+[2] rshk/python-libxdo/xdo/__init__.py::Xdo.send_keysequence_window_list_do
+[3] bgruening/galaxy_ie_helpers/galaxy_ie_helpers/__init__.py::get
+[4] josiah-wolf-oberholtzer/uqbar/uqbar/io/__init__.py::write"|"1.5988
+1.6026
+1.6027
+1.6094"|Starter Corpus|Here are some ways to interact with the operating system and files based on the provided code:  1. **Loading Files**: You can load files from a specified directory using the `survey_loader` function, which reads the contents of a survey file.|TBD
