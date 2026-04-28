@@ -7,11 +7,15 @@
 * **Dataset:** `code_search_net` (Config: `python`) - Used as the starter corpus.
 * **Embedding Model:** `sentence-transformers/all-MiniLM-L6-v2` - Used for generating dense vector embeddings of Python code and docstrings.
 * **Generator Model:** `gpt-4o-mini` (via OpenAI API) - Used as the instruction-tuned LLM to generate grounded answers.
+  
+## 2. Track Justification
 
-## 2. Pipeline Summary
+I chose Track B because it ties directly into my PhD research in Augmented Reality (AR) software testing. In my work, I frequently experiment with LLMs to automate unit test generation. However, for an LLM to write reliable tests for complex AR environments, it needs strict context about our specific codebase. Track B tackles this exact problem by demonstrating how to ground a model in local source code so it doesn't hallucinate generic answers.
+
+## 3. Pipeline Summary
 The Retrieval-Augmented Generation (RAG) pipeline is designed to ground an LLM using a local repository of Python source code. The database was initialized using a local ChromaDB persistent client, populated with 1,000 Python functions from the `code_search_net` dataset. Each function's docstring and code were concatenated and embedded using the `all-MiniLM-L6-v2` model. During the retrieval phase, user queries are embedded using the same model, and the top $k=4$ closest code chunks are retrieved using L2 distance (cosine similarity equivalent). In the generation phase, these chunks are formatted into a strict prompt containing citation metadata (`repo/path::func_name`). This prompt is passed to `gpt-4o-mini` with a low temperature setting (0.1) to enforce strict adherence to the retrieved context and prevent ungrounded code generation.
 
-## 3. Results Tables
+## 4. Results Tables
 
 ### Part 1: Baseline Queries (Starter Corpus Only)
 
@@ -43,7 +47,7 @@ The Retrieval-Augmented Generation (RAG) pipeline is designed to ground an LLM u
 | Cross-Corpus | How do I process lists of dictionaries in python? | [1] local/my_custom_tools/data/my_custom_tools.py::write_dict_to_csv<br>[2] quizl/quizler/quizler/models.py::WordSet.to_dict<br>[3] quizl/quizler/quizler/models.py::WordSet.from_dict<br>[4] aroberge/experimental/experimental/core/transforms.py::add_transformers | 0.6862<br>0.8641<br>0.8957<br>0.9078 | Both | To process lists of dictionaries in Python, you can use the `write_dict_to_csv` function to write the data to a CSV file. This function automatically extracts headers from the first dictionary's keys. | Yes |
 | Cross-Corpus | What are some ways to interact with the operating system and files? | [1] alixedi/palal/palal/survey.py::survey_loader<br>[2] rshk/python-libxdo/xdo/__init__.py::Xdo.send_keysequence_window_list_do<br>[3] bgruening/galaxy_ie_helpers/galaxy_ie_helpers/__init__.py::get<br>[4] josiah-wolf-oberholtzer/uqbar/uqbar/io/__init__.py::write | 1.5988<br>1.6026<br>1.6027<br>1.6094 | Starter Corpus | Here are some ways to interact with the operating system and files based on the provided code:  1. **Loading Files**: You can load files from a specified directory using the `survey_loader` function, which reads the contents of a survey file. | Yes |
 
-## 4. Reflection
+## 5. Reflection
 
 The initial baseline retrieval in Part 1 perfectly highlighted both the utility and the limitations of an out-of-the-box code RAG pipeline. When the 1,000-function subset happened to contain highly specific matches—such as fetching memory statistics or formatting Django subprocesses—the `gpt-4o-mini` model reliably adhered to the system prompt and grounded its answer strictly in the provided code. A notable success occurred with the SQLite query (Q6); lacking the exact connection logic, the system successfully defaulted to an alternative (Phoenix query server) while explicitly admitting the absence of SQLite code, avoiding a hallucination. Conversely, for generalized queries involving topics like automated unit test generation or web scraping, the retriever surfaced topically adjacent but functionally useless chunks. Without relevant context, the generator bypassed the strict grounding instructions and hallucinated boilerplate answers invoking external libraries like `BeautifulSoup` or generic built-in modules.
 
