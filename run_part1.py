@@ -78,17 +78,17 @@ def main():
         csv_data.append([f"Q{i}", query, csv_sources, csv_scores, short_answer, grounded])
         
     # Write the Markdown output
-    with open("part1_results_table.md", "w", encoding="utf-8") as f:
+    with open("results/part1_results_table.md", "w", encoding="utf-8") as f:
         f.write("\n".join(md_lines))
         
     # Write the pipe-separated CSV output
-    with open("part1_results.csv", "w", newline='', encoding="utf-8") as f:
+    with open("results/part1_results.csv", "w", newline='', encoding="utf-8") as f:
         writer = csv.writer(f, delimiter='|')
         writer.writerows(csv_data)
         
     print("\n✅ Part 1 complete!")
-    print(" - Markdown table saved to 'part1_results_table.md'")
-    print(" - Pipe-separated CSV saved to 'part1_results.csv'")
+    print(" - Markdown table saved to 'results/part1_results_table.md'")
+    print(" - Pipe-separated CSV saved to 'results/part1_results.csv'")
 
 if __name__ == "__main__":
     main()

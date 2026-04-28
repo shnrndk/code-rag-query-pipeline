@@ -137,16 +137,16 @@ def main():
         csv_data.append([q_type, query, csv_sources, csv_scores, source_mix, short_answer, "TBD"])
         
     # Write files
-    with open("part2_results_table.md", "w", encoding="utf-8") as f:
+    with open("results/part2_results_table.md", "w", encoding="utf-8") as f:
         f.write("\n".join(md_lines))
         
-    with open("part2_results.csv", "w", newline='', encoding="utf-8") as f:
+    with open("results/part2_results.csv", "w", newline='', encoding="utf-8") as f:
         writer = csv.writer(f, delimiter='|')
         writer.writerows(csv_data)
         
     print("\n✅ Part 2 complete!")
-    print(" - Markdown table saved to 'part2_results_table.md'")
-    print(" - Pipe-separated CSV saved to 'part2_results.csv'")
+    print(" - Markdown table saved to 'results/part2_results_table.md'")
+    print(" - Pipe-separated CSV saved to 'results/part2_results.csv'")
 
 if __name__ == "__main__":
     main()
