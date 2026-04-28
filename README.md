@@ -1,7 +1,7 @@
 # CS 6263 Assignment 4: Retrieval Augmented Generation
 
 ## 1. Track Declaration
-**Track B: Code RAG (Short)**
+**Track B: Code RAG**
 
 **Hugging Face Resources Used:**
 * **Dataset:** `code_search_net` (Config: `python`) - Used as the starter corpus.
